@@ -150,7 +150,7 @@ UPDATE `pedido` SET `id_mesa` = 2 WHERE `id` IN (6, 7);
 CREATE TABLE `producto` (
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `nombre` varchar(255) NOT NULL,
-  `precio` int(11) NOT NULL,
+  `precio` float NOT NULL,
   `id_categoria` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -175,6 +175,16 @@ INSERT INTO `producto` (`id`, `nombre`, `precio`, `id_categoria`) VALUES
 (14, 'Bocata Lomo', 4, 4),
 (15, 'Bocata Panceta', 4, 4),
 (16, 'Bocata Tortilla', 4, 4);
+
+CREATE TABLE `pedido_historico` (
+    `id` int(11) NOT NULL ,
+    `pedido_id` INT NOT NULL,
+    `precio` FLOAT NOT NULL,
+    `en_curso` VARCHAR(5) NOT NULL,
+    `fecha` DATE NOT NULL,
+    `id_mesa` INT NOT NULL,
+    `fecha_registro` DATETIME NOT NULL
+);
 
 
 -- --------------------------------------------------------
@@ -238,6 +248,9 @@ ALTER TABLE `pedido`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_mesa` (`id_mesa`);
 
+  ALTER TABLE `pedido_historico`
+ ADD PRIMARY KEY (`id`);
+
 --
 -- Indices de la tabla `producto`
 --
@@ -279,6 +292,11 @@ ALTER TABLE `pedido`
 --
 ALTER TABLE `producto`
   ADD CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id`) ON DELETE CASCADE;
+
+ALTER TABLE `pedido_historico`
+ADD CONSTRAINT `fk_pedido_historico_pedido` FOREIGN KEY (`pedido_id`) REFERENCES `pedido` (`id`) ON DELETE CASCADE,
+ADD CONSTRAINT `fk_pedido_historico_mesa` FOREIGN KEY (`id_mesa`) REFERENCES `mesa` (`id`) ON DELETE CASCADE;
+
 
   
 COMMIT;

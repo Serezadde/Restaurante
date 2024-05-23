@@ -10,34 +10,70 @@ class Mesas {
         $this->conexion = $conexion;
     }
 
-    public function crearMesa($nombre) {
-       
-        $sql = $this->conexion->query("INSERT INTO mesa(nombre) VALUES ('$nombre')");
-        if ($sql === TRUE) {
-            $nuevo_id = $this->conexion->insert_id;
-            return array('success' => true, 'mensaje' => 'Mesa creada correctamente, ID: ' . $nuevo_id);
-        } else {
-            return array('success' => false, 'mensaje' => 'Error al registrar: ' . $this->conexion->error);
+    public function insertarMesa($nombre) {
+        try {
+            $queryInsertar = "CALL sp_restaurante_mesa_insertar(?)";
+            $instanciaDB = $this->conexion->prepare($queryInsertar);
+
+            if ($instanciaDB === false) {
+                throw new Exception("Falló la preparación: " . $this->conexion->error);
+            }
+
+            $instanciaDB->bind_param('s', $nombre);
+
+            if ($instanciaDB->execute()) {
+                $nuevo_id = $this->conexion->insert_id;
+                return array('success' => true, 'mensaje' => 'Mesa creada correctamente, ID: ' . $nuevo_id);
+            } else {
+                throw new Exception("Falló la ejecución: " . $instanciaDB->error);
+            }
+        } catch (Exception $ex) {
+            return array('success' => false, 'mensaje' => 'Error al registrar: ' . $ex->getMessage());
         }
     }
 
     public function editarMesa($id, $nombre) {
-        $sql = $this->conexion->query("UPDATE mesa SET nombre='$nombre' WHERE id='$id'");
-        if ($sql == 1) {
-            return true; 
-        } else {
-            return false; 
+        try {
+            $queryEditar = "CALL sp_restaurante_mesa_editar(?, ?)";
+            $instanciaDB = $this->conexion->prepare($queryEditar);
+
+            if ($instanciaDB === false) {
+                throw new Exception("Falló la preparación: " . $this->conexion->error);
+            }
+
+            $instanciaDB->bind_param('is', $id, $nombre);
+
+            if ($instanciaDB->execute()) {
+                return array('success' => true, 'mensaje' => 'Mesa editada correctamente');
+            } else {
+                throw new Exception("Falló la ejecución: " . $instanciaDB->error);
+            }
+        } catch (Exception $ex) {
+            return array('success' => false, 'mensaje' => 'Error al editar: ' . $ex->getMessage());
         }
     }
 
+
     public function eliminarMesa($id) {
-        $sql = $this->conexion->query("DELETE FROM mesa WHERE id='$id'");
-        if ($sql == 1) {
-            return true; 
-        } else {
-            return false; 
+        try {
+            $queryEliminar = "CALL sp_restaurante_mesa_eliminar(?)";
+            $instanciaDB = $this->conexion->prepare($queryEliminar);
+
+            if ($instanciaDB === false) {
+                throw new Exception("Falló la preparación: " . $this->conexion->error);
+            }
+
+            $instanciaDB->bind_param('i', $id);
+
+            if ($instanciaDB->execute()) {
+                return array('success' => true, 'mensaje' => 'Mesa eliminada correctamente');
+            } else {
+                throw new Exception("Falló la ejecución: " . $instanciaDB->error);
+            }
+        } catch (Exception $ex) {
+            return array('success' => false, 'mensaje' => 'Error al eliminar la mesa: ' . $ex->getMessage());
         }
-    }    
+    }
 
 
 

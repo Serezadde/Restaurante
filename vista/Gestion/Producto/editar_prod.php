@@ -40,9 +40,9 @@ if (!$result) {
                 <input type="text" class="form-control" name="nombre" value="<?= $datos->nombre ?>">
             </div>
             <div class="mb-3">
-                <label for="examplePrecio" class="form-label">Precio del Producto:</label>
-                <input type="number" class="form-control" name="precio" value="<?= $datos->precio ?>">
-            </div>
+  <label for="exampleInputPrecio" class="form-label">Precio del producto:</label>
+  <input type="number" class="form-control" name="precio" step="0.01">
+</div>
             <div >
         <?php
        include "../../../componentes/seleccioncategoria.php";

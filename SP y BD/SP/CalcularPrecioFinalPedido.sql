@@ -1,4 +1,4 @@
-DELIMITER $$
+/*DELIMITER $$
 
 CREATE PROCEDURE `CalcularPrecioFinalPedido`(IN pedido_id INT, OUT precio_final FLOAT)
 BEGIN
@@ -13,7 +13,7 @@ END$$
 
 DELIMITER ;
 
-/*
+*/
 
 DELIMITER $$
 
@@ -56,4 +56,3 @@ BEGIN
 END$$
 
 DELIMITER ;
-*/

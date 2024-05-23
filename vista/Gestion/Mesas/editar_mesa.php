@@ -25,10 +25,10 @@ $sql = $conexion->query("SELECT * FROM mesa WHERE id=$id");
         <input type="text" name= "id" value= "<?= $_GET["id"] ?>" readonly>
 
         <?php
-        include "../../../controlador/Gestion/Mesas/editar.php";
+
         while ($datos = $sql->fetch_object()) { ?>
             <div class="mb-3">
-                <label for="exampleInputeditar" class="form-label">Editar Mesa:</label>
+                <label for="exampleInputeditar" class="form-label">Nombre de la Mesa:</label>
                 <input type="text" class="form-control" name="nombre" value="<?= $datos->nombre ?>">
             </div>
         <?php }

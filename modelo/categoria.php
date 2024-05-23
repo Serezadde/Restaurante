@@ -85,13 +85,23 @@ class Categoria{
     }
 
     public function editarCategoria($id, $nombre) {
-       
+        try {
+            $queryEditar = "CALL sp_restaurante_categoria_editar(?, ?)";
+            $instanciaDB = $this->conexion->prepare($queryEditar);
 
-        $sql = $this->conexion->query("UPDATE categoria SET nombre='$nombre' WHERE id='$id'");
-        if ($sql == 1) {
-            return true; 
-        } else {
-            return false; 
+            if ($instanciaDB === false) {
+                throw new Exception("Falló la preparación: " . $this->conexion->error);
+            }
+
+            $instanciaDB->bind_param('is', $id, $nombre);
+
+            if ($instanciaDB->execute()) {
+                return true;
+            } else {
+                throw new Exception("Falló la ejecución: " . $instanciaDB->error);
+            }
+        } catch (Exception $ex) {
+            return "Ocurrió un error: " . $ex->getMessage();
         }
     }
 
