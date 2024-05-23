@@ -18,9 +18,12 @@ if (isset($_POST["btneditar"])) {
     } else {
         echo '<div class="alert alert-warning">Todos los campos son obligatorios</div>';
     }
-} else {
+} 
+/*
+else {
     $id = $_GET["id"];
     $sql = $conexion->query("SELECT * FROM mesa WHERE id = $id");
     $datos = $sql->fetch_object();
 }
+*/
 ?>
