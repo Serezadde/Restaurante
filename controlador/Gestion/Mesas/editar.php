@@ -10,6 +10,7 @@ if (isset($_POST["btneditar"])) {
         $nombre = $_POST["nombre"];
 
         $resultado = $mesas->editarMesa($id, $nombre);
+        
         if ($resultado['success']) {
             header("Location: ../../../vista/Gestion/Mesas/mesas2.php");
         } else {
