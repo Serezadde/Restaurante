@@ -21,26 +21,21 @@ $sql = $conexion->query("SELECT * FROM mesa WHERE id=$id");
 
     <h1 class="text-center p-3">Editar Mesas</h1>
 
-    <form class="col-4 p-3 m-auto" name="editarMesasForm" method="post">
+    <form class="col-4 p-3 m-auto" name="editarMesasForm" method="post" action="../../../controlador/Gestion/Mesas/editar.php">
         <input type="text" name= "id" value= "<?= $_GET["id"] ?>" readonly>
 
         <?php
-        include "../../../controlador/Gestion/Mesas/editar.php";
+
         while ($datos = $sql->fetch_object()) { ?>
             <div class="mb-3">
-                <label for="exampleInputeditar" class="form-label">Editar Mesa:</label>
+                <label for="exampleInputeditar" class="form-label">Nombre de la Mesa:</label>
                 <input type="text" class="form-control" name="nombre" value="<?= $datos->nombre ?>">
             </div>
         <?php }
         ?>
 
-
-
-
-
         <button type="submit" class="btn btn-primary" name="btneditar" value="okeditar">editar</button>
     </form>
-
 </body>
 
 </html>

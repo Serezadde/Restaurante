@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html>
+
+<?php
+include "../../componentes/head.php";
+include "../../../modelo/conexion.php";
+$id = $_GET["id"];
+?>
+
 <head>
   <title>Administración de Productos</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">

@@ -62,9 +62,9 @@ return respuesta;
                 <td><?= $datos->id ?></td>
                 <td><?= $datos->nombre ?></td>
                 <td>
-                  <a href="../../../vista/Gestion/Mesas/editar_mesa.php?id=<?= $datos->id ?>" class="btn btn-small btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                  <a href="../../../vista/Gestion/Mesas/editar_mesa.php?id=<?= $datos->id ?>" class="btn btn-small btn-warning">Editar <i class="fa-solid fa-pen-to-square"></i></a>
 
-                  <a onclick="return eliminar()" href="mesas2.php?id=<?= $datos->id ?>" class="btn btn-small btn-danger"><i class="fa-solid fa-trash"></i></a>
+                  <a onclick="return eliminar()" href="mesas2.php?id=<?= $datos->id ?>" class="btn btn-small btn-danger">Borrar <i class="fa-solid fa-trash"></i></a>
                 </td>
               </tr>
             <?php

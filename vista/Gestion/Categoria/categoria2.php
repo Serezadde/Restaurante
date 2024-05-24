@@ -49,10 +49,10 @@
                         <td><?= $datos->id ?></td>
                         <td><?= $datos->nombre ?></td>
                         <td>
-                            <a href="../../../vista/Gestion/Categoria/editar_cat.php?id=<?= $datos->id ?>" class="btn btn-small btn-warning">
+                            <a href="../../../vista/Gestion/Categoria/editar_cat.php?id=<?= $datos->id ?>" class="btn btn-small btn-warning">Editar 
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </a>
-                            <a onclick="return eliminar()" href="../../../controlador/Gestion/Categoria/eliminar.php?id=<?= $datos->id ?>" class="btn btn-small btn-danger">
+                            <a onclick="return eliminar()" href="../../../controlador/Gestion/Categoria/eliminar.php?id=<?= $datos->id ?>" class="btn btn-small btn-danger">Borrar 
                                 <i class="fa-solid fa-trash"></i>
                             </a>
                         </td>

@@ -1,13 +1,14 @@
 <?php
-include "../../../modelo/conexion.php";
-include "../../../modelo/mesas.php";
+require "../../../modelo/conexion.php";
+require "../../../modelo/mesas.php";
 
-$mesas = new Mesas($conexion); 
+$mesas = new Mesas($conexion);
+
 if (!empty($_POST["btncrear"])) {
     if (!empty($_POST["nombre"])) {
         $nombre = $_POST["nombre"];
 
-        $resultado = $mesas->crearMesa($nombre); 
+        $resultado = $mesas->insertarMesa($nombre);
         if ($resultado['success']) {
             echo '<div class="alert alert-success">' . $resultado['mensaje'] . '</div>';
         } else {
@@ -17,3 +18,4 @@ if (!empty($_POST["btncrear"])) {
         echo '<div class="alert alert-warning">Campo vacío</div>';
     }
 }
+?>
