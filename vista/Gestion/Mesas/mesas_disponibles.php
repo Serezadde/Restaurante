@@ -12,23 +12,18 @@
 
     <form name="SelMesaForm" method="post">
         <div>
-            <?php
-                include "../../../modelo/conexion.php";
-                include "../../../componentes/seleccionmesa.php";
-            ?>
-        </div>
-    </form>
+    <?php
+          
+          include "../../../modelo/conexion.php";
+          include "../../../componentes/seleccionmesa.php";
 
-    <!--las etiquetas extra php son para que podamos
-    cambiar las etiquetas en base a si hay mesas disponibles o no -->
-    <?php if (!empty($mesas)) { ?>
-        <a href="../../../vista/Pedidos/nuevo_pedido.php?id=<?= $mesas[0]['id'] ?>" class="btn btn-primary">Seleccionar<i class="fa-solid fa-pen-to-square"></i></a>
-    <?php } else { ?>
-        <a href="#" class="btn btn-primary disabled">No hay mesas disponibles</a>
-    <?php } ?>
-    
-    <a href="../../../vista/Pedidos/menu.php"><button class="btn btn-primary">Atrás</button></a>
-    
+          ?>
+          </diV>
+
+          <a href="vista/Gestion/Mesas/pedidos_mesa.php?id=<?= $datos->id ?>">Enviar</a>
+</form>
+    <a href="../../../vista/Pedidos/menu.php"><i class="fa-solid fa-backward"></i></button></a>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
 </body>
 </html>

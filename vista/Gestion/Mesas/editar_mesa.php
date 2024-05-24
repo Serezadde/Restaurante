@@ -21,7 +21,7 @@ $sql = $conexion->query("SELECT * FROM mesa WHERE id=$id");
 
     <h1 class="text-center p-3">Editar Mesas</h1>
 
-    <form class="col-4 p-3 m-auto" name="editarMesasForm" method="post" action="../../../controlador/Gestion/Mesas/editar.php">
+    <form class="col-4 p-3 m-auto" name="editarMesasForm" method="post">
         <input type="text" name= "id" value= "<?= $_GET["id"] ?>" readonly>
 
         <?php
@@ -34,8 +34,13 @@ $sql = $conexion->query("SELECT * FROM mesa WHERE id=$id");
         <?php }
         ?>
 
+
+
+
+
         <button type="submit" class="btn btn-primary" name="btneditar" value="okeditar">editar</button>
     </form>
+
 </body>
 
 </html>

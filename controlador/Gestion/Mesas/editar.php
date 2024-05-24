@@ -10,6 +10,7 @@ if (isset($_POST["btneditar"])) {
         $nombre = $_POST["nombre"];
 
         $resultado = $mesas->editarMesa($id, $nombre);
+        
         if ($resultado['success']) {
             header("Location: ../../../vista/Gestion/Mesas/mesas2.php");
         } else {
@@ -18,12 +19,9 @@ if (isset($_POST["btneditar"])) {
     } else {
         echo '<div class="alert alert-warning">Todos los campos son obligatorios</div>';
     }
-} 
-/*
-else {
+} else {
     $id = $_GET["id"];
     $sql = $conexion->query("SELECT * FROM mesa WHERE id = $id");
     $datos = $sql->fetch_object();
 }
-*/
 ?>
